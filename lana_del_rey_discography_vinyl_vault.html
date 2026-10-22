@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lana Del Rey - Discography & Vinyl Vault</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        burgundy: '#4a0e17',
+                        burgundyDark: '#2a050b',
+                        rosegold: '#e2b4bd',
+                        amberGold: '#d4af37',
+                        charcoal: '#121113',
+                        cardBg: '#1c1a1d',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #121113;
+            color: #f3f4f6;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-serif-custom {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121113;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a0e17;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e2b4bd;
+        }
+        /* Glow animations */
+        .glow-effect {
+            box-shadow: 0 0 25px rgba(226, 180, 189, 0.15);
+        }
+        .glow-effect:hover {
+            box-shadow: 0 0 35px rgba(226, 180, 189, 0.3);
+        }
+        .gold-glow {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+        /* Grain overlay */
+        .vintage-grain {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+        }
+        /* Vinyl Spinning Effect */
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .spin-vinyl {
+            animation: spinSlow 12s linear infinite;
+        }
+        .spin-paused {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body class="vintage-grain relative min-h-screen pb-24 selection:bg-rosegold selection:text-burgundy">
+
+    <div class="bg-gradient-to-r from-burgundy via-burgundyDark to-burgundy text-rosegold text-xs md:text-sm py-2 px-4 text-center font-medium tracking-widest uppercase border-b border-rosegold/20 flex justify-between items-center">
+        <span class="hidden md:inline"><i class="fa-solid fa-compact-disc mr-2 text-amberGold"></i> Envíos a todo el mundo</span>
+        <span class="mx-auto md:mx-0">✨ 15% DE DESCUENTO EN TU PRIMER PEDIDO CON EL CÓDIGO: <strong class="text-white underline cursor-pointer" onclick="copyPromoCode()">BORN2DIE</strong></span>
+        <span class="hidden md:inline"><i class="fa-solid fa-ribbon ml-2 text-amberGold"></i> Ediciones Limitadas de Colección</span>
+    </div>
+
+    <header class="sticky top-0 z-40 bg-charcoal/90 backdrop-blur-md border-b border-rosegold/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden text-rosegold hover:text-white focus:outline-none text-2xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-full bg-burgundy border border-rosegold/40 flex items-center justify-center text-rosegold group-hover:border-rosegold transition-all">
+                    <i class="fa-solid fa-record-vinyl text-xl group-hover:rotate-180 transition-transform duration-700"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif text-xl sm:text-2xl tracking-widest text-white group-hover:text-rosegold transition-colors uppercase font-bold">Lana Del Rey</span>
+                    <span class="text-[9px] tracking-widest text-rosegold/70 uppercase">Vinyl & Music Vault</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium tracking-wider text-gray-300">
+                <a href="#hero" class="hover:text-rosegold transition-colors py-1 border-b-2 border-transparent hover:border-rosegold">INICIO</a>
+                <a href="#albums" class="hover:text-rosegold transition-colors py-1 border-b-2 border-transparent hover:border-rosegold">ÁLBUMES & VINILOS</a>
+                <a href="#limited" class="hover:text-rosegold transition-colors py-1 border-b-2 border-transparent hover:border-rosegold">EDICIONES LIMITADAS</a>
+                <a href="#merch" class="hover:text-rosegold transition-colors py-1 border-b-2 border-transparent hover:border-rosegold">MERCH EXCLUSIVO</a>
+                <a href="#why-vinyl" class="hover:text-rosegold transition-colors py-1 border-b-2 border-transparent hover:border-rosegold">EXPERIENCIA</a>
+            </nav>
+
+            <!-- Action Controls -->
+            <div class="flex items-center space-x-4">
+                <!-- Search Bar -->
+                <div class="relative hidden sm:block">
+                    <input type="text" id="search-input" onkeyup="filterProducts()" placeholder="Buscar disco..." class="bg-cardBg/80 text-xs text-white placeholder-gray-400 pl-8 pr-4 py-2 rounded-full border border-rosegold/20 focus:outline-none focus:border-rosegold w-36 lg:w-48 transition-all">
+                    <i class="fa-solid fa-magnifying-glass text-xs text-rosegold/60 absolute left-3 top-3"></i>
+                </div>
+
+                <!-- Wishlist -->
+                <button class="relative text-gray-300 hover:text-rosegold transition-colors p-2" title="Lista de Deseos">
+                    <i class="fa-regular fa-heart text-lg"></i>
+                    <span id="wishlist-count" class="absolute top-0 right-0 w-4 h-4 bg-burgundy text-rosegold rounded-full text-[10px] font-bold flex items-center justify-center border border-rosegold/30">0</span>
+                </button>
+
+                <!-- Shopping Cart Badge Button -->
+                <button id="cart-btn" onclick="toggleCartDrawer()" class="relative bg-burgundy hover:bg-burgundy/80 text-rosegold px-3 py-2 rounded-full border border-rosegold/30 flex items-center space-x-2 transition-all">
+                    <i class="fa-solid fa-bag-shopping text-sm"></i>
+                    <span id="cart-count" class="bg-rosegold text-burgundy font-bold text-xs px-1.5 py-0.5 rounded-full">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-cardBg border-b border-rosegold/20 px-6 py-4 space-y-3">
+            <input type="text" onkeyup="filterProducts()" placeholder="Buscar disco..." class="w-full bg-charcoal text-xs text-white placeholder-gray-400 px-4 py-2 rounded-full border border-rosegold/20 focus:outline-none mb-3">
+            <a href="#hero" onclick="closeMobileMenu()" class="block text-sm text-gray-300 hover:text-rosegold">INICIO</a>
+            <a href="#albums" onclick="closeMobileMenu()" class="block text-sm text-gray-300 hover:text-rosegold">ÁLBUMES & VINILOS</a>
+            <a href="#limited" onclick="closeMobileMenu()" class="block text-sm text-gray-300 hover:text-rosegold">EDICIONES LIMITADAS</a>
+            <a href="#merch" onclick="closeMobileMenu()" class="block text-sm text-gray-300 hover:text-rosegold">MERCH EXCLUSIVO</a>
+            <a href="#why-vinyl" onclick="closeMobileMenu()" class="block text-sm text-gray-300 hover:text-rosegold">EXPERIENCIA</a>
+        </div>
+    </header>
+
+    <section id="hero" class="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-16 px-4">
+        <!-- Background Gradient Glows -->
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-burgundy/40 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-rosegold/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            <!-- Hero Left Content -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center space-x-2 bg-burgundy/60 border border-rosegold/30 px-4 py-1.5 rounded-full text-rosegold text-xs uppercase tracking-widest">
+                    <span class="w-2 h-2 rounded-full bg-amberGold animate-ping"></span>
+                    <span>Colección Oficial Análoga</span>
+                </div>
+                
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif font-bold text-white leading-none tracking-tight">
+                    Nostalgia, Romance <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-rosegold via-amberGold to-rosegold italic">& Vinilo Vintage</span>
+                </h1>
+                
+                <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                    Sumérgete en la discografía analógica de Lana Del Rey. Vinilos de edición especial, prensados en colores exclusivos, casetes nostálgicos y memorabilia cinemática para coleccionistas devotos.
+                </p>
+
+                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                    <a href="#albums" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-burgundy to-burgundyDark hover:from-rosegold hover:to-amberGold text-rosegold hover:text-burgundy font-semibold rounded-full border border-rosegold/40 shadow-lg transition-all transform hover:-translate-y-0.5 text-center tracking-widest text-sm uppercase">
+                        <i class="fa-solid fa-compact-disc mr-2"></i> Explorar Álbumes
+                    </a>
+                    <a href="#limited" class="w-full sm:w-auto px-8 py-4 bg-transparent hover:bg-cardBg text-white hover:text-rosegold font-semibold rounded-full border border-gray-600 hover:border-rosegold transition-all text-center tracking-widest text-sm uppercase">
+                        Ediciones Limitadas
+                    </a>
+                </div>
+
+                <!-- Live Social Proof Stats -->
+                <div class="pt-8 grid grid-cols-3 gap-4 border-t border-rosegold/10 text-center lg:text-left">
+                    <div>
+                        <div class="font-serif text-2xl lg:text-3xl font-bold text-rosegold">100%</div>
+                        <div class="text-xs text-gray-400 uppercase tracking-wider">Audio Masterizado</div>
+                    </div>
+                    <div>
+                        <div class="font-serif text-2xl lg:text-3xl font-bold text-amberGold">9+</div>
+                        <div class="text-xs text-gray-400 uppercase tracking-wider">Álbumes Icónicos</div>
+                    </div>
+                    <div>
+                        <div class="font-serif text-2xl lg:text-3xl font-bold text-rosegold">Ltd.</div>
+                        <div class="text-xs text-gray-400 uppercase tracking-wider">Prensados Raros</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Right Visual: Vinyl Turntable Graphic -->
+            <div class="lg:col-span-5 flex justify-center relative">
+                <div class="relative w-72 h-72 sm:w-96 sm:h-96 rounded-full border-4 border-burgundy/60 bg-cardBg flex items-center justify-center shadow-2xl p-4">
+                    <!-- Vinyl Record Disc -->
+                    <div id="hero-vinyl" class="w-full h-full rounded-full bg-black border-4 border-gray-800 flex items-center justify-center relative shadow-inner spin-vinyl cursor-pointer" title="Click para pausar/reproducir giro">
+                        <!-- Grooves -->
+                        <div class="w-5/6 h-5/6 rounded-full border border-gray-800/80 flex items-center justify-center">
+                            <div class="w-4/5 h-4/5 rounded-full border border-gray-800/80 flex items-center justify-center">
+                                <div class="w-2/3 h-2/3 rounded-full border border-gray-800/80 flex items-center justify-center">
+                                    <!-- Vinyl Label Center -->
+                                    <div class="w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-cover bg-center border-2 border-amberGold shadow-md flex items-center justify-center text-center p-2" style="background-image: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=600&auto=format&fit=crop');">
+                                        <span class="bg-black/60 text-rosegold font-serif text-xs font-bold p-1 rounded backdrop-blur-xs">Ocean Blvd</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Cover Art Badge Floating -->
+                    <div class="absolute -bottom-4 -left-4 w-28 sm:w-36 rounded-lg overflow-hidden shadow-2xl border border-rosegold/40 transform -rotate-12 hover:rotate-0 transition-transform">
+                        <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=400&auto=format&fit=crop" alt="Born to Die Cover" class="w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-vinyl" class="py-16 bg-cardBg/50 border-y border-rosegold/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-rosegold mb-3">¿Por qué coleccionar a Lana en Vinilo?</h2>
+                <p class="text-gray-400 text-sm">La música de Lana Del Rey está diseñada para la calidez análoga, celebrando la estética retro y la alta fidelidad auditiva.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-charcoal p-8 rounded-2xl border border-rosegold/10 hover:border-rosegold/40 transition-all text-center group">
+                    <div class="w-16 h-16 rounded-full bg-burgundy/40 border border-rosegold/30 flex items-center justify-center text-rosegold text-2xl mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-2">Masterizado Análogo Puro</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Transferencia directa de cinta máster a surco de vinilo para capturar la nitidez cinematográfica de sus cuerdas y la resonancia melancólica de su voz.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-charcoal p-8 rounded-2xl border border-rosegold/10 hover:border-rosegold/40 transition-all text-center group">
+                    <div class="w-16 h-16 rounded-full bg-burgundy/40 border border-rosegold/30 flex items-center justify-center text-rosegold text-2xl mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-image"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-2">Arte de Portada Expandido</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Pósters exclusivos de gran formato, encartes con letras manuscritas, fotobooks inéditos y portadas alternativas autorizadas por la artista.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-charcoal p-8 rounded-2xl border border-rosegold/10 hover:border-rosegold/40 transition-all text-center group">
+                    <div class="w-16 h-16 rounded-full bg-burgundy/40 border border-rosegold/30 flex items-center justify-center text-rosegold text-2xl mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-compact-disc"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-white mb-2">Prensados de Color de Edición Limitada</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">Discos prensados en cera transparente pastel, rojo borgoña, translúcidos de coleccionista y tirajes de distribución exclusiva.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="limited" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+            <div>
+                <span class="text-amberGold text-xs font-bold uppercase tracking-widest">Lo Más Codiciado</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-white">Bestsellers & Ediciones Limitadas</h2>
+            </div>
+            <!-- Carousel Controls -->
+            <div class="flex space-x-3">
+                <button onclick="scrollCarousel(-1)" class="w-10 h-10 rounded-full bg-cardBg border border-rosegold/30 text-rosegold hover:bg-burgundy transition-all flex items-center justify-center">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button onclick="scrollCarousel(1)" class="w-10 h-10 rounded-full bg-cardBg border border-rosegold/30 text-rosegold hover:bg-burgundy transition-all flex items-center justify-center">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Carousel Container -->
+        <div id="carousel-container" class="flex space-x-6 overflow-x-auto scroll-smooth pb-6 scrollbar-none snap-x">
+            <!-- Carousel Item 1 -->
+            <div class="min-w-[280px] sm:min-w-[320px] bg-cardBg rounded-2xl border border-rosegold/20 p-4 snap-start glow-effect flex flex-col justify-between">
+                <div class="relative overflow-hidden rounded-xl group mb-4">
+                    <span class="absolute top-3 left-3 bg-burgundy text-rosegold text-[10px] uppercase font-bold px-2.5 py-1 rounded-full z-10 border border-rosegold/30">Pocas Unidades</span>
+                    <img src="https://images.unsplash.com/photo-1539375665275-f9de415ef9ac?q=80&w=500&auto=format&fit=crop" alt="Norman Fucking Rockwell" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <button onclick="openTracklist('nfr')" class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-rosegold text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-eye mr-2"></i> Ver Tracklist
+                    </button>
+                </div>
+                <div>
+                    <span class="text-gray-400 text-xs">2019 • 2x LP Vinil Lime Green</span>
+                    <h3 class="font-serif text-xl font-bold text-white mt-1">Norman Fucking Rockwell!</h3>
+                    <div class="flex items-center space-x-1 my-2 text-amberGold text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <span class="text-gray-400 ml-2 text-[10px]">(4.9/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-xl font-bold text-rosegold">$42.99</span>
+                        <button onclick="addToCart(1, 'Norman Fucking Rockwell!', 42.99, 'https://images.unsplash.com/photo-1539375665275-f9de415ef9ac?q=80&w=500&auto=format&fit=crop')" class="bg-burgundy hover:bg-rosegold hover:text-burgundy text-rosegold px-4 py-2 rounded-full text-xs font-semibold transition-all border border-rosegold/30">
+                            + Añadir
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Item 2 -->
+            <div class="min-w-[280px] sm:min-w-[320px] bg-cardBg rounded-2xl border border-rosegold/20 p-4 snap-start glow-effect flex flex-col justify-between">
+                <div class="relative overflow-hidden rounded-xl group mb-4">
+                    <span class="absolute top-3 left-3 bg-amberGold text-burgundy text-[10px] uppercase font-bold px-2.5 py-1 rounded-full z-10">Exclusivo Vault</span>
+                    <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=500&auto=format&fit=crop" alt="Born to Die Paradise Edition" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <button onclick="openTracklist('btd')" class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-rosegold text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-eye mr-2"></i> Ver Tracklist
+                    </button>
+                </div>
+                <div>
+                    <span class="text-gray-400 text-xs">2012 • Vinil Rojo Intenso</span>
+                    <h3 class="font-serif text-xl font-bold text-white mt-1">Born to Die (Paradise Edition)</h3>
+                    <div class="flex items-center space-x-1 my-2 text-amberGold text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <span class="text-gray-400 ml-2 text-[10px]">(5.0/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-xl font-bold text-rosegold">$38.50</span>
+                        <button onclick="addToCart(2, 'Born to Die (Paradise Edition)', 38.50, 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=500&auto=format&fit=crop')" class="bg-burgundy hover:bg-rosegold hover:text-burgundy text-rosegold px-4 py-2 rounded-full text-xs font-semibold transition-all border border-rosegold/30">
+                            + Añadir
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Item 3 -->
+            <div class="min-w-[280px] sm:min-w-[320px] bg-cardBg rounded-2xl border border-rosegold/20 p-4 snap-start glow-effect flex flex-col justify-between">
+                <div class="relative overflow-hidden rounded-xl group mb-4">
+                    <span class="absolute top-3 left-3 bg-burgundy text-rosegold text-[10px] uppercase font-bold px-2.5 py-1 rounded-full z-10 border border-rosegold/30">Nuevo Prensado</span>
+                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=500&auto=format&fit=crop" alt="Did You Know Ocean Blvd" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <button onclick="openTracklist('ocean')" class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-rosegold text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-eye mr-2"></i> Ver Tracklist
+                    </button>
+                </div>
+                <div>
+                    <span class="text-gray-400 text-xs">2023 • Double Pink Vinyl</span>
+                    <h3 class="font-serif text-xl font-bold text-white mt-1">Did You Know... Ocean Blvd</h3>
+                    <div class="flex items-center space-x-1 my-2 text-amberGold text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        <span class="text-gray-400 ml-2 text-[10px]">(4.8/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-xl font-bold text-rosegold">$45.00</span>
+                        <button onclick="addToCart(3, 'Did You Know... Ocean Blvd', 45.00, 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=500&auto=format&fit=crop')" class="bg-burgundy hover:bg-rosegold hover:text-burgundy text-rosegold px-4 py-2 rounded-full text-xs font-semibold transition-all border border-rosegold/30">
+                            + Añadir
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Item 4 -->
+            <div class="min-w-[280px] sm:min-w-[320px] bg-cardBg rounded-2xl border border-rosegold/20 p-4 snap-start glow-effect flex flex-col justify-between">
+                <div class="relative overflow-hidden rounded-xl group mb-4">
+                    <span class="absolute top-3 left-3 bg-burgundy text-rosegold text-[10px] uppercase font-bold px-2.5 py-1 rounded-full z-10 border border-rosegold/30">Vintage Classic</span>
+                    <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=500&auto=format&fit=crop" alt="Ultraviolence" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <button onclick="openTracklist('uv')" class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-rosegold text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-eye mr-2"></i> Ver Tracklist
+                    </button>
+                </div>
+                <div>
+                    <span class="text-gray-400 text-xs">2014 • Edición CD Deluxe</span>
+                    <h3 class="font-serif text-xl font-bold text-white mt-1">Ultraviolence (Deluxe Box)</h3>
+                    <div class="flex items-center space-x-1 my-2 text-amberGold text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <span class="text-gray-400 ml-2 text-[10px]">(5.0/5)</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-xl font-bold text-rosegold">$29.99</span>
+                        <button onclick="addToCart(4, 'Ultraviolence Deluxe Box', 29.99, 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=500&auto=format&fit=crop')" class="bg-burgundy hover:bg-rosegold hover:text-burgundy text-rosegold px-4 py-2 rounded-full text-xs font-semibold transition-all border border-rosegold/30">
+                            + Añadir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="albums" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-10">
+            <h2 class="text-3xl sm:text-5xl font-serif font-bold text-white mb-3">Catálogo Completo & Vault</h2>
+            <p class="text-gray-400 text-sm">Filtra por formato y explora cada era estética de Lana Del Rey.</p>
+            
+            <!-- Category Filter Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-8">
+                <button onclick="setFilter('all')" class="filter-btn active-filter px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all bg-burgundy text-rosegold border border-rosegold/40">Todos</button>
+                <button onclick="setFilter('vinyl')" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all bg-cardBg text-gray-300 hover:text-rosegold border border-rosegold/20">Vinilos</button>
+                <button onclick="setFilter('cd')" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all bg-cardBg text-gray-300 hover:text-rosegold border border-rosegold/20">CDs Especiaes</button>
+                <button onclick="setFilter('cassette')" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all bg-cardBg text-gray-300 hover:text-rosegold border border-rosegold/20">Casetes</button>
+                <button onclick="setFilter('merch')" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase transition-all bg-cardBg text-gray-300 hover:text-rosegold border border-rosegold/20">Merch</button>
+            </div>
+        </div>
+
+        <!-- Dynamic Product Cards Grid -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Product Item 1 -->
+            <div class="product-card vinyl bg-cardBg rounded-2xl border border-rosegold/10 overflow-hidden hover:border-rosegold/40 transition-all duration-300 flex flex-col justify-between group">
+                <div class="relative overflow-hidden">
+                    <span class="absolute top-3 left-3 bg-burgundy/90 text-rosegold text-[10px] uppercase font-bold px-2 py-1 rounded border border-rosegold/30 z-10">Vinilo</span>
+                    <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=500&auto=format&fit=crop" alt="Born to Die Vinyl" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
+                        <button onclick="playAudioSnippet('Born To Die', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3')" class="w-10 h-10 rounded-full bg-rosegold text-burgundy flex items-center justify-center hover:scale-110 transition-transform" title="Escuchar Snippet">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                        <button onclick="openTracklist('btd')" class="w-10 h-10 rounded-full bg-burgundy text-rosegold flex items-center justify-center hover:scale-110 transition-transform" title="Ver Detalle">
+                            <i class="fa-solid fa-list text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs text-gray-400">2012 • Interscope</span>
+                        <h3 class="font-serif text-lg font-bold text-white mt-1">Born To Die (Classic Vinyl)</h3>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between border-t border-rosegold/10 pt-4">
+                        <span class="text-lg font-bold text-rosegold">$34.99</span>
+                        <button onclick="addToCart(5, 'Born To Die Vinyl', 34.99, 'https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=500&auto=format&fit=crop')" class="bg-burgundy hover:bg-rosegold hover:text-burgundy text-rosegold px-3 py-1.5 rounded-full text-xs font-medium transition-all">
+                            + Añadir
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 2 -->
+            <div class="product-card vinyl bg-cardBg rounded-2xl border border-rosegold/10 overflow-hidden hover:border-rosegold/40 transition-all duration-300 flex flex-col justify-between group">
+                <div class="relative overflow-hidden">
+                    <span class="absolute top-3 left-3 bg-burgundy/90 text-rosegold text-[10px] uppercase font-bold px-2 py-1 rounded border border-rosegold/30 z-10">Vinilo</span>
+                    <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=500&auto=format&fit=crop" alt="Ultraviolence Vinyl" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
+                        <button onclick="playAudioSnippet('Ultraviolence', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3')" class="w-10 h-10 rounded-full bg-rosegold text-burgundy flex items-center justify-center hover:scale-110 transition-transform" title="Escuchar Snippet">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                        <button onclick="openTracklist('uv')" class="w-10 h-10 rounded-full bg-burgundy text-rosegold flex items-center justify-center hover:scale-110 transition-transform" title="Ver Detalle">
+                            <i class="fa-solid fa-list text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs text-gray-400">2014 • Polydor</span>
+                        <h3 class="font-serif text-lg font-bold text-white mt-1">Ultraviolence Double LP</h3>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between border-t border-rosegold/10 pt-4">
+                        <span class="text-lg font-bold text-rosegold">$39.99</span>
+                        <button onclick="addToCart(6, 'Ultraviolence Double LP', 39.99, 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=500&auto=format&fit=crop')" class="bg-burgundy hover:bg-rosegold hover:text-burgundy text-rosegold px-3 py-1.5 rounded-full text-xs font-medium transition-all">
+                            + Añadir
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 3 -->
+            <div class="product-card cassette bg-cardBg rounded-2xl border border-rosegold/10 overflow-hidden hover:border-rosegold/40 transition-all duration-300 flex flex-col justify-between group">
+                <div class="relative overflow-hidden">
+                    <span class="absolute top-3 left-3 bg-amberGold text-burgundy text-[10px] uppercase font-bold px-2 py-1 rounded z-10">Casete Retro</span>
+                    <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=500&auto=format&fit=crop" alt="Lust For Life Cassette" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
+                        <button onclick="playAudioSnippet('Lust For Life', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3')" class="w-10 h-10 rounded-full bg-rosegold text-burgundy flex items-center justify-center hover:scale-110 transition-transform" title="Escuchar Snippet">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs text-gray-400">2017 • Cinta Rosa Transparente</span>
+                        <h3 class="font-serif text-lg font-bold text-white mt-1">Lust For Life (Cassette Tape)</h3>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between border-t border-rosegold/10 pt-4">
+                        <span class="text-lg font-bold text-rosegold">$19.99</span>
+                        <button onclick="addToCart(7, 'Lust For Life Cassette', 19.99, 'https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=500&auto=format&fit=crop')" class="bg-burgundy hover:bg-rosegold hover:text-burgundy text-rosegold px-3 py-1.5 rounded-full text-xs font-medium transition-all">
+                            + Añadir
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 4 -->
+            <div class="product-card cd bg-cardBg rounded-2xl border border-rosegold/10 overflow-hidden hover:border-rosegold/40 transition-all duration-300 flex flex-col justify-between group">
+                <div class="relative overflow-hidden">
+                    <span class="absolute top-3 left-3 bg-gray-700 text-white text-[10px] uppercase font-bold px-2 py-1 rounded z-10">CD Digipak</span>
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500&auto=format&fit=crop" alt="Chemtrails Over The Country Club" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-3">
+                        <button onclick="playAudioSnippet('Chemtrails', 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3')" class="w-10 h-10 rounded-full bg-rosegold text-burgundy flex items-center justify-center hover:scale-110 transition-transform" title="Escuchar Snippet">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs text-gray-400">2021 • Edición Especial Con Book</span>
+                        <h3 class="font-serif text-lg font-bold text-white mt-1">Chemtrails Over The Country Club</h3>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between border-t border-rosegold/10 pt-4">
+                        <span class="text-lg font-bold text-rosegold">$16.50</span>
+                        <button onclick="addToCart(8, 'Chemtrails Over CD', 16.50, 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=500&auto=format&fit=crop')" class="bg-burgundy hover:bg-rosegold hover:text-burgundy text-rosegold px-3 py-1.5 rounded-full text-xs font-medium transition-all">
+                            + Añadir
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 5 -->
+            <div id="merch" class="product-card merch bg-cardBg rounded-2xl border border-rosegold/10 overflow-hidden hover:border-rosegold/40 transition-all duration-300 flex flex-col justify-between group">
+                <div class="relative overflow-hidden">
+                    <span class="absolute top-3 left-3 bg-burgundy text-rosegold text-[10px] uppercase font-bold px-2 py-1 rounded border border-rosegold/30 z-10">Merch Coquette</span>
+                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=500&auto=format&fit=crop" alt="Vintage LDR Heart Locket Sweater" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs text-gray-400">Ropa Exclusiva • Algodón Heavyweight</span>
+                        <h3 class="font-serif text-lg font-bold text-white mt-1">Vintage 'Norman Rockwell' Crewneck</h3>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between border-t border-rosegold/10 pt-4">
+                        <span class="text-lg font-bold text-rosegold">$58.00</span>
+                        <button onclick="addToCart(9, 'Norman Rockwell Crewneck', 58.00, 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=500&auto=format&fit=crop')" class="bg-burgundy hover:bg-rosegold hover:text-burgundy text-rosegold px-3 py-1.5 rounded-full text-xs font-medium transition-all">
+                            + Añadir
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Item 6 -->
+            <div class="product-card merch bg-cardBg rounded-2xl border border-rosegold/10 overflow-hidden hover:border-rosegold/40 transition-all duration-300 flex flex-col justify-between group">
+                <div class="relative overflow-hidden">
+                    <span class="absolute top-3 left-3 bg-burgundy text-rosegold text-[10px] uppercase font-bold px-2 py-1 rounded border border-rosegold/30 z-10">Accesorio</span>
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=500&auto=format&fit=crop" alt="Heart Locket Necklace" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs text-gray-400">Joyería • Baño de Oro 18K</span>
+                        <h3 class="font-serif text-lg font-bold text-white mt-1">Locket Corazón Vintage 'Diet Mountain Dew'</h3>
+                    </div>
+                    <div class="mt-4 flex items-center justify-between border-t border-rosegold/10 pt-4">
+                        <span class="text-lg font-bold text-rosegold">$32.00</span>
+                        <button onclick="addToCart(10, 'Locket Corazón Vintage', 32.00, 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=500&auto=format&fit=crop')" class="bg-burgundy hover:bg-rosegold hover:text-burgundy text-rosegold px-3 py-1.5 rounded-full text-xs font-medium transition-all">
+                            + Añadir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gradient-to-r from-burgundyDark via-burgundy to-burgundyDark border-y border-rosegold/20 my-12 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center px-4 relative z-10">
+            <span class="text-amberGold text-xs uppercase tracking-widest font-bold">Únete al Club de Coleccionistas Vault</span>
+            <h2 class="text-3xl sm:text-5xl font-serif font-bold text-white mt-2 mb-4">Acceso Exclusivo a Lanzamientos Secretos</h2>
+            <p class="text-gray-300 text-sm max-w-xl mx-auto mb-8 font-light">
+                Recibe avisos antes que nadie para reprensados de vinilos raros, fechas secretas de giras y obtén un **15% de descuento** en tu primera compra.
+            </p>
+            
+            <form onsubmit="handleNewsletter(event)" class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-lg mx-auto">
+                <input type="email" required placeholder="Tu correo electrónico favorito..." class="w-full sm:w-auto flex-1 bg-charcoal text-white placeholder-gray-400 px-6 py-3.5 rounded-full border border-rosegold/30 focus:outline-none focus:border-rosegold text-sm">
+                <button type="submit" class="w-full sm:w-auto px-8 py-3.5 bg-rosegold hover:bg-amberGold text-burgundy font-bold rounded-full transition-all text-xs uppercase tracking-wider">
+                    Suscribirme
+                </button>
+            </form>
+            <p id="newsletter-success" class="text-rosegold text-xs mt-3 hidden">✨ ¡Te has suscrito con éxito! Usa el código <strong>BORN2DIE</strong> en el checkout.</p>
+        </div>
+    </section>
+
+    <div id="audio-player-bar" class="fixed bottom-0 left-0 right-0 bg-charcoal/95 border-t border-rosegold/30 backdrop-blur-lg px-4 py-3 z-30 transition-transform duration-300 transform translate-y-0">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+            <!-- Currently Playing Info -->
+            <div class="flex items-center space-x-3 w-1/3">
+                <div class="w-10 h-10 rounded bg-burgundy flex items-center justify-center text-rosegold font-bold font-serif">
+                    <i class="fa-solid fa-music text-xs animate-pulse"></i>
+                </div>
+                <div class="truncate">
+                    <h4 id="player-track-title" class="text-xs font-semibold text-white truncate">Selecciona una canción</h4>
+                    <p class="text-[10px] text-rosegold/80 truncate">Lana Del Rey • Preview Snippet</p>
+                </div>
+            </div>
+
+            <!-- Audio Controls -->
+            <div class="flex flex-col items-center justify-center w-1/3">
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-400 hover:text-white text-xs"><i class="fa-solid fa-backward-step"></i></button>
+                    <button id="player-play-btn" onclick="toggleAudio()" class="w-9 h-9 rounded-full bg-rosegold text-burgundy flex items-center justify-center hover:scale-105 transition-transform text-sm">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                    <button class="text-gray-400 hover:text-white text-xs"><i class="fa-solid fa-forward-step"></i></button>
+                </div>
+            </div>
+
+            <!-- Volume / Details -->
+            <div class="flex items-center justify-end space-x-3 w-1/3 text-xs text-gray-400">
+                <i class="fa-solid fa-volume-high"></i>
+                <span class="hidden sm:inline text-[10px] uppercase tracking-wider text-amberGold">Vault Audio HD</span>
+            </div>
+        </div>
+        <!-- Hidden audio element -->
+        <audio id="main-audio-element" src=""></audio>
+    </div>
+
+    <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full sm:w-96 bg-cardBg border-l border-rosegold/20 z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between shadow-2xl">
+        <div class="p-6 border-b border-rosegold/10 flex items-center justify-between">
+            <h3 class="font-serif text-2xl font-bold text-white flex items-center">
+                <i class="fa-solid fa-bag-shopping mr-3 text-rosegold text-xl"></i> Tu Carrito
+            </h3>
+            <button onclick="toggleCartDrawer()" class="text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cart-items-container" class="p-6 flex-1 overflow-y-auto space-y-4">
+            <p class="text-gray-400 text-xs text-center py-8">Tu carrito está vacío actualmente. ¡Añade un vinilo vintage!</p>
+        </div>
+
+        <!-- Cart Footer / Total -->
+        <div class="p-6 border-t border-rosegold/10 bg-charcoal space-y-4">
+            <div class="flex justify-between text-sm font-semibold text-gray-300">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal" class="text-rosegold text-base font-bold">$0.00</span>
+            </div>
+            <p class="text-[10px] text-gray-400">Impuestos y gastos de envío calculados en la pantalla de pago.</p>
+            <button onclick="checkout()" class="w-full py-3.5 bg-gradient-to-r from-burgundy to-burgundyDark hover:from-rosegold hover:to-amberGold text-rosegold hover:text-burgundy font-bold rounded-full transition-all text-xs tracking-widest uppercase border border-rosegold/30">
+                Proceder al Pago
+            </button>
+        </div>
+    </div>
+
+    <div id="tracklist-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-cardBg border border-rosegold/30 rounded-2xl max-w-lg w-full p-6 relative shadow-2xl">
+            <button onclick="closeTracklist()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 id="modal-title" class="font-serif text-2xl font-bold text-rosegold mb-1">Título del Álbum</h3>
+            <p id="modal-subtitle" class="text-xs text-gray-400 mb-4">Información de Pistas & Prensa</p>
+            <hr class="border-rosegold/10 mb-4">
+            <ol id="modal-tracks" class="space-y-2 text-xs text-gray-300 max-h-60 overflow-y-auto pr-2 list-decimal list-inside">
+                <!-- Tracks dynamically injected -->
+            </ol>
+            <div class="mt-6 flex justify-end">
+                <button onclick="closeTracklist()" class="px-5 py-2 bg-burgundy text-rosegold text-xs rounded-full border border-rosegold/30">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-charcoal border-t border-rosegold/20 pt-16 pb-24 text-gray-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Col 1 -->
+            <div class="space-y-4">
+                <span class="font-serif text-xl tracking-widest text-white uppercase font-bold block">Lana Del Rey</span>
+                <p class="text-gray-400 leading-relaxed">
+                    La tienda definitiva de vinilos, casetes y coleccionables oficiales para verdaderos fans del universo estético de Lana Del Rey.
+                </p>
+            </div>
+
+            <!-- Col 2 -->
+            <div>
+                <h4 class="font-serif text-base font-bold text-white mb-4 uppercase tracking-wider">Enlaces Rápidos</h4>
+                <ul class="space-y-2">
+                    <li><a href="#hero" class="hover:text-rosegold transition-colors">Inicio</a></li>
+                    <li><a href="#albums" class="hover:text-rosegold transition-colors">Discografía Completa</a></li>
+                    <li><a href="#limited" class="hover:text-rosegold transition-colors">Ediciones Limitadas</a></li>
+                    <li><a href="#merch" class="hover:text-rosegold transition-colors">Colección Merch</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3 -->
+            <div>
+                <h4 class="font-serif text-base font-bold text-white mb-4 uppercase tracking-wider">Servicio al Cliente</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-rosegold transition-colors">Estado de Envío</a></li>
+                    <li><a href="#" class="hover:text-rosegold transition-colors">Política de Devoluciones</a></li>
+                    <li><a href="#" class="hover:text-rosegold transition-colors">Cuidado del Vinilo</a></li>
+                    <li><a href="#" class="hover:text-rosegold transition-colors">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4 -->
+            <div>
+                <h4 class="font-serif text-base font-bold text-white mb-4 uppercase tracking-wider">Comunidad & Redes</h4>
+                <div class="flex space-x-4 text-lg mb-4">
+                    <a href="#" class="w-9 h-9 rounded-full bg-burgundy/40 border border-rosegold/20 flex items-center justify-center text-rosegold hover:bg-rosegold hover:text-burgundy transition-all"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-burgundy/40 border border-rosegold/20 flex items-center justify-center text-rosegold hover:bg-rosegold hover:text-burgundy transition-all"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-burgundy/40 border border-rosegold/20 flex items-center justify-center text-rosegold hover:bg-rosegold hover:text-burgundy transition-all"><i class="fa-brands fa-spotify"></i></a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-burgundy/40 border border-rosegold/20 flex items-center justify-center text-rosegold hover:bg-rosegold hover:text-burgundy transition-all"><i class="fa-brands fa-apple"></i></a>
+                </div>
+                <p class="text-[10px] text-gray-500">Aceptamos Visa, Mastercard, AMEX, PayPal & Apple Pay.</p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-gray-800 text-center text-gray-500 text-[11px]">
+            &copy; 2026 Lana Del Rey Vault Store. Todos los derechos reservados. Diseñado para coleccionistas.
+        </div>
+    </footer>
+
+    <script>
+        // Shopping Cart State
+        let cart = [];
+
+        // Tracklist Database
+        const tracklists = {
+            'btd': {
+                title: 'Born to Die (Paradise Edition)',
+                subtitle: '2012 • Interscope Records',
+                tracks: ['Born to Die', 'Off to the Races', 'Blue Jeans', 'Video Games', 'Diet Mountain Dew', 'National Anthem', 'Dark Paradise', 'Radio', 'Summertime Sadness', 'Ride', 'American', 'Cola']
+            },
+            'nfr': {
+                title: 'Norman Fucking Rockwell!',
+                subtitle: '2019 • Polydor Records',
+                tracks: ['Norman Fucking Rockwell', 'Mariners Apartment Complex', 'Venice Bitch', 'Fuck It I Love You', 'Doin\' Time', 'Love Song', 'Cinnamon Girl', 'How to Disappear', 'California', 'The Greatest']
+            },
+            'ocean': {
+                title: 'Did You Know That There\'s a Tunnel Under Ocean Blvd',
+                subtitle: '2023 • Interscope Records',
+                tracks: ['The Grants', 'Did You Know...', 'Sweet', 'A&W', 'Judah Smith Interlude', 'Candy Necklace', 'Jon Batiste Interlude', 'Kintsugi', 'Fingertips', 'Paris, Texas']
+            },
+            'uv': {
+                title: 'Ultraviolence (Deluxe Box)',
+                subtitle: '2014 • Interscope / Polydor',
+                tracks: ['Cruel World', 'Ultraviolence', 'Shades of Cool', 'Brooklyn Baby', 'West Coast', 'Sad Girl', 'Pretty When You Cry', 'Money Power Glory', 'Fucked My Way Up To The Top', 'Old Money']
+            }
+        };
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        function closeMobileMenu() {
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        // Cart Drawer Toggling
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('translate-x-full');
+        }
+
+        // Add Product to Cart
+        function addToCart(id, name, price, image) {
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({ id, name, price, image, quantity: 1 });
+            }
+            updateCartUI();
+            toggleCartDrawer();
+        }
+
+        // Remove Product from Cart
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        // Update Cart UI
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            const cartContainer = document.getElementById('cart-items-container');
+            const cartSubtotal = document.getElementById('cart-subtotal');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalCost = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            cartCount.innerText = totalItems;
+            cartSubtotal.innerText = `$${totalCost.toFixed(2)}`;
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = `<p class="text-gray-400 text-xs text-center py-8">Tu carrito está vacío actualmente. ¡Añade un vinilo vintage!</p>`;
+                return;
+            }
+
+            cartContainer.innerHTML = cart.map(item => `
+                <div class="flex items-center space-x-3 bg-charcoal p-3 rounded-xl border border-rosegold/10">
+                    <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover rounded">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="text-xs font-semibold text-white truncate">${item.name}</h4>
+                        <span class="text-xs text-rosegold font-bold">$${item.price.toFixed(2)} x ${item.quantity}</span>
+                    </div>
+                    <button onclick="removeFromCart(${item.id})" class="text-gray-500 hover:text-red-400 text-xs">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Scroll Carousel Controls
+        function scrollCarousel(direction) {
+            const container = document.getElementById('carousel-container');
+            const scrollAmount = 320;
+            container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+
+        // Filter Products Function
+        function setFilter(category) {
+            // Update filter buttons visual state
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-burgundy', 'text-rosegold');
+                btn.classList.add('bg-cardBg', 'text-gray-300');
+            });
+            event.target.classList.add('bg-burgundy', 'text-rosegold');
+
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Search Bar Filter Function
+        function filterProducts() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const cards = document.querySelectorAll('.product-card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').innerText.toLowerCase();
+                if (title.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Tracklist Modal Control
+        function openTracklist(albumKey) {
+            const data = tracklists[albumKey];
+            if (!data) return;
+
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-subtitle').innerText = data.subtitle;
+            
+            const tracksList = document.getElementById('modal-tracks');
+            tracksList.innerHTML = data.tracks.map(track => `<li class="py-1 border-b border-gray-800">${track}</li>`).join('');
+
+            const modal = document.getElementById('tracklist-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeTracklist() {
+            const modal = document.getElementById('tracklist-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Mini Audio Player Controls
+        const audioElement = document.getElementById('main-audio-element');
+        const playBtn = document.getElementById('player-play-btn');
+        const trackTitle = document.getElementById('player-track-title');
+
+        function playAudioSnippet(title, url) {
+            trackTitle.innerText = title;
+            audioElement.src = url;
+            audioElement.play();
+            playBtn.innerHTML = `<i class="fa-solid fa-pause"></i>`;
+        }
+
+        function toggleAudio() {
+            if (!audioElement.src) return;
+            if (audioElement.paused) {
+                audioElement.play();
+                playBtn.innerHTML = `<i class="fa-solid fa-pause"></i>`;
+            } else {
+                audioElement.pause();
+                playBtn.innerHTML = `<i class="fa-solid fa-play"></i>`;
+            }
+        }
+
+        // Interactive Vinyl Spinner Toggle
+        document.getElementById('hero-vinyl').addEventListener('click', function() {
+            this.classList.toggle('spin-paused');
+        });
+
+        // Copy Promo Code
+        function copyPromoCode() {
+            navigator.clipboard.writeText('BORN2DIE');
+            alert('¡Código BORN2DIE copiado al portapapeles!');
+        }
+
+        // Newsletter Form Handle
+        function handleNewsletter(e) {
+            e.preventDefault();
+            document.getElementById('newsletter-success').classList.remove('hidden');
+        }
+
+        // Checkout Simulation
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío.');
+                return;
+            }
+            alert('¡Gracias por tu compra en Lana Del Rey Vault! Redirigiendo a pasarela de pago segura...');
+            cart = [];
+            updateCartUI();
+            toggleCartDrawer();
+        }
+    </script>
+</body>
+</html>
